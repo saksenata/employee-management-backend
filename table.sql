@@ -1,15 +1,22 @@
 CREATE TABLE employees (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(100) NOT NULL,
-  phone VARCHAR(20) NOT NULL,
-  address TEXT NOT NULL,
-  role VARCHAR(50) NOT NULL,
-  status VARCHAR(20) NOT NULL DEFAULT 'active',
-  document_path VARCHAR(255),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL DEFAULT 'active',
+    document_path VARCHAR(255),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    nik VARCHAR(255) UNIQUE,
+    gender enum_employees_gender,
+    birth_place VARCHAR(255),
+    birth_date DATE,
+    username VARCHAR(255) UNIQUE,
+    contract_start_date DATE,
+    contract_end_date DATE,
+    marital_status VARCHAR(255),
+    bpjs_doctor_code VARCHAR(255),
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(255),
+    address TEXT,
+    role VARCHAR(255)
 );
-
-CREATE INDEX idx_employees_email ON employees(email);

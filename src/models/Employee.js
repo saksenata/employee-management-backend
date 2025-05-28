@@ -11,43 +11,35 @@ const Employee = sequelize.define('Employee', {
   fullName: {
     type: DataTypes.STRING,
     allowNull: false,
-    field: 'name', // Maps to the 'name' column in the database
+    field: 'name',
   },
   nik: {
     type: DataTypes.STRING,
-    // allowNull: false, // This column is not in the user's provided DB schema
-    // unique: true,     // This column is not in the user's provided DB schema
-    field: 'nik',     // Assuming it might be added later
+    field: 'nik',
   },
   gender: {
     type: DataTypes.ENUM('Laki-laki', 'Perempuan'),
-    // allowNull: false, // This column is not in the user's provided DB schema
-    field: 'gender',  // Assuming it might be added later
+    field: 'gender',
   },
   birthPlace: {
     type: DataTypes.STRING,
-    field: 'birth_place', // This column is not in the user's provided DB schema
+    field: 'birth_place',
   },
   birthDate: {
     type: DataTypes.DATEONLY,
-    field: 'birth_date', // This column is not in the user's provided DB schema
+    field: 'birth_date',
   },
   phoneNumber: {
     type: DataTypes.STRING,
-    // allowNull: false, // User's schema has phone VARCHAR(20) NOT NULL
     field: 'phone', // Maps to the 'phone' column
   },
-  // Granular address fields removed to match user's schema (single 'address' TEXT field)
   addressDetail: {
     type: DataTypes.TEXT,
-    // allowNull: false, // User's schema has address TEXT NOT NULL
     field: 'address', // Maps to the 'address' column
   },
   username: {
     type: DataTypes.STRING,
-    // allowNull: false, // This column is not in the user's provided DB schema
-    // unique: true,     // This column is not in the user's provided DB schema
-    field: 'username',// Assuming it might be added later
+    field: 'username',
   },
   email: {
     type: DataTypes.STRING,
@@ -65,42 +57,39 @@ const Employee = sequelize.define('Employee', {
   },
   employeeType: {
     type: DataTypes.STRING,
-    // allowNull: false, // User's schema has role VARCHAR(50) NOT NULL
     field: 'role', // Maps to the 'role' column
   },
   contractStartDate: {
     type: DataTypes.DATEONLY,
-    field: 'contract_start_date', // This column is not in the user's provided DB schema
+    field: 'contract_start_date',
   },
   contractEndDate: {
     type: DataTypes.DATEONLY,
-    field: 'contract_end_date', // This column is not in the user's provided DB schema
+    field: 'contract_end_date',
   },
   maritalStatus: {
     type: DataTypes.STRING,
-    field: 'marital_status', // This column is not in the user's provided DB schema
+    field: 'marital_status',
   },
   bpjsDoctorCode: {
     type: DataTypes.STRING,
-    field: 'bpjs_doctor_code', // This column is not in the user's provided DB schema
+    field: 'bpjs_doctor_code',
   },
   photoPath: {
     type: DataTypes.STRING,
     allowNull: true,
-    field: 'document_path', // Maps to the 'document_path' column
+    field: 'document_path',
   },
   status: {
     type: DataTypes.STRING, // User's schema has status VARCHAR(20)
     allowNull: false,
-    defaultValue: 'active', // User's schema has DEFAULT 'active'
+    defaultValue: 'active',
     field: 'status',
   },
-  // Sequelize automatically handles createdAt and updatedAt if timestamps: true
-  // and the columns are named created_at and updated_at (which they are in user's schema)
 }, {
   tableName: 'employees',
-  timestamps: true, // This will use 'created_at' and 'updated_at' column names by default
-  underscored: true, // Ensures Sequelize maps camelCase fields to snake_case columns if not specified by 'field'
+  timestamps: true,
+  underscored: true,
   hooks: {
     beforeCreate: async (employee) => {
       if (employee.password) {
