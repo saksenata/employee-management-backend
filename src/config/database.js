@@ -1,3 +1,4 @@
+import pg from 'pg';
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
@@ -9,7 +10,14 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: 'postgres',
+    dialectModule: pg,
     logging: process.env.NODE_ENV === 'development' ? console.log : false,
+    dialectOptions: {
+      ssl: {
+        require: true,       // Require SSL
+        rejectUnauthorized: false // For self-signed certificates
+      }
+    },
   }
 );
 
