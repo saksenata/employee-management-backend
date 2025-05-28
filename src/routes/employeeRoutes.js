@@ -13,7 +13,7 @@ const {
 const photoFieldName = 'photo';
 
 router.post(
-  '/',
+  '/employees',
   dummyAuthMiddleware,
   uploadEmployeePhoto(photoFieldName),
   validateFile(photoFieldName),
@@ -22,19 +22,19 @@ router.post(
 );
 
 router.get(
-  '/',
+  '/employees',
   dummyAuthMiddleware,
   employeeController.getAllEmployees
 );
 
 router.get(
-  '/:id',
+  '/employees/:id',
   dummyAuthMiddleware,
   employeeController.getEmployeeById
 );
 
 router.put(
-  '/:id',
+  '/employees/:id',
   dummyAuthMiddleware,
   uploadEmployeePhoto(photoFieldName),
   validateFile(photoFieldName),
@@ -43,7 +43,7 @@ router.put(
 );
 
 router.delete(
-  '/:id',
+  '/employees/:id',
   dummyAuthMiddleware,
   employeeController.deleteEmployee
 );
